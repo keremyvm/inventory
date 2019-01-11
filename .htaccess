@@ -1,0 +1,27 @@
+php_flag apc.cache_by_default Off
+
+<IfModule mod_rewrite.c>
+
+    php_flag display_startup_errors on
+    php_flag display_errors on
+    php_flag html_errors on
+    
+    #Options -Indexes
+
+    RewriteEngine on
+    
+    #AllowOverride All
+
+    #RewriteBase /
+
+    #RedirectMatch 403 ^/(libraries).*$
+
+    #Antes de redireccionar, se verifica que la petición no sea a un directorio o archivo existente
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    #RewriteCond %{REQUEST_FILENAME} !-l
+
+    # Si el archivo/directorio no existe, redireccionamos
+    RewriteRule ^(.*)$ index.php/$1 [L]
+
+</IfModule>

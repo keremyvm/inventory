@@ -1,0 +1,17 @@
+<?php
+//base
+define('BASE_URL','http://127.0.0.1/inventory/');
+//js
+define('JS',BASE_URL.'app/public/js/');
+//css
+define('CSS',BASE_URL.'app/public/css/');
+//ajax
+define('AJAX',BASE_URL.'app/public/ajax/');
+//view-default
+define('VIEW-DEFAULT',BASE_URL.'app/view/default/');
+//view-modules
+define('VIEW-MODULES',BASE_URL.'app/view/modules/');
+//libraries
+define('LIBRARIES',BASE_URL.'lib/');
+//img
+define('IMG',BASE_URL.'app/media/img/');
