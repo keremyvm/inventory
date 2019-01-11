@@ -98,20 +98,32 @@
         				<span class="error txt_nuevo_stock"></span>
 	        		</div>
 	        		<!-- input precio-compra -->
-	        		<div class="form-group">
+	        		<div class="form-group row">
+	        			<div class="col-xs-6">
 	        			<div class="input-group">
 	        				<span class="input-group-addon input-icono"><i class="fa fa-arrow-up"></i></span>
 	        				<input type="number" class="form-control input-lg" min="0" placeholder="Ingrese Precio Compra" name="txt_nuevo_precio-compra" required id="txt_nuevo_precio-compra">
-	        			</div>	
+	        			</div>
         				<span class="error txt_nuevo_precio-compra"></span>
-	        		</div>
+	        			</div>	
+	        		
 	        		<!-- input precio-venta -->
-	        		<div class="form-group">
+	        		<div class="col-xs-6">
 	        			<div class="input-group">
 	        				<span class="input-group-addon input-icono"><i class="fa fa-arrow-down"></i></span>
 	        				<input type="number" class="form-control input-lg" min="0" placeholder="Ingrese Precio Venta" name="txt_nuevo_precio-venta" required id="txt_nuevo_precio-venta">
 	        			</div>	
         				<span class="error txt_nuevo_precio-venta"></span>
+	        		</div>
+	        		</div>
+	        		<!-- input photo -->
+	        		<div class="form-group">
+	        			<div class="panel">SUBIR FOTO</div>
+	        			<input type="file" name="file_nuevo_foto" class="file_foto" id="file_nuevo_foto">
+	        			<span class="error file_nuevo_foto"></span>
+	        			<!-- <span class="error foto"></span> -->
+	        			<p class="help-block">Peso máximo de la foto 2MB</p>
+	        			<img src="<?php echo IMG?>usuarios/default/anonymous.png" alt="" class="img-thumbnail previsualizar" width="200px">
 	        		</div>
 	        		<!-- ...................... -->
 	        	</div>
@@ -171,5 +183,5 @@
 </section>
   </section> 
 </div> <!-- end path .........-->
-<script src="<?php echo JS?>producto.js"></script>
+<!-- <script src="<?php //echo JS?>producto.js"></script> -->
 <script src="<?php echo AJAX?>ajax_producto.js"></script>
