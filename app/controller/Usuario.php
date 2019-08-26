@@ -130,7 +130,7 @@ class Usuario
     {
         $table='usuarios';
         $data=$this->usuario->db_get_all($table);
-        echo json_encode(array('status'=>1,'msj'=>$data));
+        echo json_encode(array('status'=>1,'msj'=>$data,'user'=>$_SESSION['usuario']));
     }
     //---------------------------
     public function mostrar_editar_usuario()
@@ -241,7 +241,7 @@ class Usuario
                         'id'        =>  $id
                     );
         $this->usuario->db_update($table,$data,$where);
-        $_SESSION['nombre']=$name;
+        // $_SESSION['nombre']=$name;
         echo json_encode(array('status'=>1,'msj'=>"El usuario ".$user." ha sido actualizado correctamente"));
     }
     //---------------------------

@@ -118,20 +118,38 @@ function mostrar_usuario() {
         success: function(call) {
             if (call.status == 1) {
                 var tablita = '';
+                // var color='';
                 $.each(call.msj, function(k, v) {
-                    tablita += '<tr>';
-                    tablita += '<td>' + v.id + '</td>';
-                    tablita += '<td>' + v.nombre + '</td>';
-                    tablita += '<td>' + v.usuario + '</td>';
-                    if (v.foto != "") tablita += '<td><img src="' + v.foto + '" alt="" width="40px"></td>';
-                    else tablita += '<td><img src="<?php echo IMG?>usuarios/default/anonymous.png" alt="" width="40px"></td>';
-                    tablita += '<td>' + v.perfil + '</td>';
-                    if (v.estado == 1) tablita += '<td><button class="btn btn-success btn-xs btn_activar" id="activo" id_usuario=' + v.id + ' estado_usuario=0>activado</button></td>';
-                    else if (v.estado == 0) tablita += '<td><button class="btn btn-danger btn-xs btn_activar" id="desactivo" id_usuario=' + v.id + ' estado_usuario=1>desactivado</button></td>';
-                    tablita += '<td>' + v.ultimo_login + '</td>';
-                    tablita += '<td><div class="btn-group"><button class="btn btn-warning btnEditarUsuario" title="modificar" idUsuario=' + v.id + ' data-toggle="modal" data-target="#modal-editar-usuario"><i class="fa fa-pencil"></i></button>';
-                    tablita += '<button class="btn btn-danger btnEliminarUsuario" title="eliminar" data-toggle="modal" data-target="#modal-eliminar-usuario" idUsuario="' + v.id + '" fotoUsuario="' + v.foto + '" Usuario="' + v.usuario + '"><i class="fa fa-times"></i></button></div></td>';
-                    tablita += '</tr>';
+                    // console.log(call.user);
+                    if (call.user == v.usuario) {
+                        tablita += '<tr style="background-color:yellow;">';
+                        tablita += '<td>' + v.id + '</td>';
+                        tablita += '<td>' + v.nombre + '</td>';
+                        tablita += '<td>' + v.usuario + '</td>';
+                        if (v.foto != "") tablita += '<td><img src="' + v.foto + '" alt="" width="40px"></td>';
+                        else tablita += '<td><img src="<?php echo IMG?>usuarios/default/anonymous.png" alt="" width="40px"></td>';
+                        tablita += '<td>' + v.perfil + '</td>';
+                        if (v.estado == 1) tablita += '<td><button class="btn btn-success btn-xs btn_activar" id="activo" id_usuario=' + v.id + ' estado_usuario=0>activado</button></td>';
+                        else if (v.estado == 0) tablita += '<td><button class="btn btn-danger btn-xs btn_activar" id="desactivo" id_usuario=' + v.id + ' estado_usuario=1>desactivado</button></td>';
+                        tablita += '<td>' + v.ultimo_login + '</td>';
+                        tablita += '<td><div class="btn-group"><button class="btn btn-warning btnEditarUsuario" title="modificar" idUsuario=' + v.id + ' data-toggle="modal" data-target="#modal-editar-usuario"><i class="fa fa-pencil"></i></button>';
+                        tablita += '<button class="btn btn-danger btnEliminarUsuario" title="eliminar" data-toggle="modal" data-target="#modal-eliminar-usuario" idUsuario="' + v.id + '" fotoUsuario="' + v.foto + '" Usuario="' + v.usuario + '"><i class="fa fa-times"></i></button></div></td>';
+                        tablita += '</tr>';
+                    } else {
+                        tablita += '<tr>';
+                        tablita += '<td>' + v.id + '</td>';
+                        tablita += '<td>' + v.nombre + '</td>';
+                        tablita += '<td>' + v.usuario + '</td>';
+                        if (v.foto != "") tablita += '<td><img src="' + v.foto + '" alt="" width="40px"></td>';
+                        else tablita += '<td><img src="<?php echo IMG?>usuarios/default/anonymous.png" alt="" width="40px"></td>';
+                        tablita += '<td>' + v.perfil + '</td>';
+                        if (v.estado == 1) tablita += '<td><button class="btn btn-success btn-xs btn_activar" id="activo" id_usuario=' + v.id + ' estado_usuario=0>activado</button></td>';
+                        else if (v.estado == 0) tablita += '<td><button class="btn btn-danger btn-xs btn_activar" id="desactivo" id_usuario=' + v.id + ' estado_usuario=1>desactivado</button></td>';
+                        tablita += '<td>' + v.ultimo_login + '</td>';
+                        tablita += '<td><div class="btn-group"><button class="btn btn-warning btnEditarUsuario" title="modificar" idUsuario=' + v.id + ' data-toggle="modal" data-target="#modal-editar-usuario"><i class="fa fa-pencil"></i></button>';
+                        tablita += '<button class="btn btn-danger btnEliminarUsuario" title="eliminar" data-toggle="modal" data-target="#modal-eliminar-usuario" idUsuario="' + v.id + '" fotoUsuario="' + v.foto + '" Usuario="' + v.usuario + '"><i class="fa fa-times"></i></button></div></td>';
+                        tablita += '</tr>';
+                    }
                 });
                 $('#tbl_tbody').html(tablita);
                 datatable();
@@ -203,8 +221,9 @@ function editar_usuario(event) {
                     closeOnConfirm: false
                 }).then((result) => {
                     if (result.value) {
-                        window.location = 'http://127.0.0.1/inventory/usuario';
-                        // mostrar_usuario();
+                        mostrar_usuario();
+                        // window.location = 'http://127.0.0.1/inventory/usuario';
+                        $('#modal-editar-usuario').modal('hide');
                         // $('#modal-editar-usuario').remove();
                         // $('div').removeClass('modal-backdrop');
                     }
@@ -346,8 +365,11 @@ function eliminar_usuario(event) {
                             confirmButtonText: "CERRAR",
                             closeOnConfirm: false
                         }).then((result) => {
+                            if (result.value) {
+                                mostrar_usuario();
+                                $('#modal-eliminar-usuario').modal('hide');
+                            }
                             // window.location = 'http://127.0.0.1/inventory/usuario';
-                            mostrar_usuario();
                         });
                     }
                 }

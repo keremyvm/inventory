@@ -54,8 +54,17 @@ class Query
         {
             $tmp_sql[$arr_key2[$k]]=$value;
         }
+        try{
         $rs=$this->db->prepare($this->sql);
-        $rs->execute($tmp_sql);    
+        $rs->execute($tmp_sql);  
+        return true;
+        }
+        catch (Exception $e) {
+        return false;
+        }
+
+    
+      
     } 
     //----------------------------------------------------
      public function update($table,$data,$where)

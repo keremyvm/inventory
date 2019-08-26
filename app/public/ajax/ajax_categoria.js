@@ -6,6 +6,7 @@ $(document).ready(function() {
 $('#form_nuevo_categoria').on('click', '#btn_guardar_categoria', guardar_categoria);
 $('#tbl_tbody').on('click', '.btnEditarCategoria', mostrar_editar_categoria);
 $('#form_editar_categoria').on('click', '#btn_editar_categoria', editar_categoria);
+$('#tbl_tbody').on('click', '.btnEliminarCategoria', eliminar_categoria);
 //--------------------------------FUNCTIONS
 function guardar_categoria(event) {
     event.preventDefault();
@@ -31,7 +32,8 @@ function guardar_categoria(event) {
                     closeOnConfirm: false
                 }).then((result) => {
                     mostrar_categoria();
-                    $('#txt_nuevo_categoria').val('');
+                    $('#modal-agregar-categoria').modal('hide');
+                    // $('#txt_nuevo_categoria').val('');
                 });
             }
             if (call.status == 2) {
@@ -72,7 +74,7 @@ function mostrar_categoria() {
                     tablita += '<td>' + v.id + '</td>';
                     tablita += '<td>' + v.categoria + '</td>';
                     tablita += '<td><div class="btn-group"><button class="btn btn-warning btnEditarCategoria" id_categoria=' + v.id + ' title="modificar" data-toggle="modal" data-target="#modal-editar-categoria"><i class="fa fa-pencil"></i></button>';
-                    tablita += '<button class="btn btn-danger" title="eliminar" data-toggle="modal" data-target="#modal-eliminar-categoria"><i class="fa fa-times"></i></button></div></td>';
+                    tablita += '<button class="btn btn-danger btnEliminarCategoria" id_categoria=' + v.id + ' title="eliminar" data-toggle="modal" data-target="#modal-eliminar-categoria"><i class="fa fa-times"></i></button></div></td>';
                     tablita += '</tr>';
                 });
                 $('#tbl_tbody').html(tablita);
@@ -119,8 +121,57 @@ function editar_categoria() {
                 confirmButtonText: 'CERRAR',
                 closeOnConfirm: false
             }).then((result) => {
-                window.location = 'http://127.0.0.1/inventory/categoria';
+                if (result.value) {
+                    mostrar_categoria();
+                    $('#modal-editar-categoria').modal('hide');
+                }
+                // window.location = 'http://127.0.0.1/inventory/categoria';
             });
         }
+    });
+}
+//----------------------------------------------------------------------
+function eliminar_categoria(event) {
+    event.preventDefault();
+    var url = 'http://127.0.0.1/inventory/categoria/eliminar_categoria';
+    var id = $(this).attr('id_categoria');
+    var data = {
+        txt_eliminar_id: id
+    };
+    swal({
+        type: 'warning',
+        title: 'Esta seguro de realizar esta accion',
+        text: 'Se procedera ha realizar la operacion',
+        showCancelButton: true,
+        confirmButtonText: 'Si, borrar usuario',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#39CFEA',
+        cancelButtonColor: '#F15325'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: url,
+                data: data,
+                method: 'post',
+                dataType: 'json',
+                success: function(call) {
+                    if (call.status == 1) {
+                        swal({
+                            type: 'info',
+                            title: 'Se procedio a eliminar al usuario: ' + call.msj,
+                            showConfirmButton: true,
+                            confirmButtonText: 'Cerrar',
+                            closeOnConfirm: false
+                        }).then((result) => {
+                            if (result.value) {
+                                mostrar_categoria();
+                                $('#modal-eliminar-categoria').modal('hide');
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        //-------------
     });
 }

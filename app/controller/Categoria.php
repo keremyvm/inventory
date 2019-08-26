@@ -84,4 +84,16 @@ class Categoria
         $this->categoria->db_update($table,$data,$where);
         echo json_encode(array('status'=>1,'msj'=>'La categoria se ha actualizado correctamente'));
     }
+    //-----------------------------------------------------------
+    public function eliminar_categoria()
+    {
+        $table='categorias';
+        $id=$_POST['txt_eliminar_id'];
+        $where=array(
+                        'id'    =>  $id
+                    );
+        $this->categoria->db_delete($table,$where);
+        echo json_encode(array('status'=>1,'msj'=>$id));
+    }
+    //-----------------------------------------------------------
 }

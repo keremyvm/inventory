@@ -24,9 +24,15 @@
   <link rel="stylesheet" href="<?php echo LIBRARIES ?>bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Data Table Bootstrap -->
 <link rel="stylesheet" href="<?php echo LIBRARIES ?>bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="<?php echo LIBRARIES ?>plugins/iCheck/all.css">
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- daterangepicker -->
+  <link rel="stylesheet" href="<?php echo LIBRARIES ?>bower_components/bootstrap-daterangepicker/daterangepicker.css">
 </head>
+<!-- morris css -->
+<link rel="stylesheet" href="<?php echo LIBRARIES?>bower_components/morris.js/morris.css">
   <!--==========================
   =            LINK MODULES           =
   ===========================-->
@@ -62,10 +68,23 @@
 <!-- <script src="<?php //echo LIBRARIES ?>bower_components/datatables.net-bs/js/dataTables.responsive.js"></script> -->
 <!-- SweetAlert2 -->
 <script src="<?php echo LIBRARIES ?>bower_components/sweetalert2/dist/sweetalert2.all.min.js"></script>
+<!-- iCheck -->
+<script src="<?php echo LIBRARIES ?>plugins/iCheck/icheck.min.js"></script>
+<!-- InputMask -->
+<script src="<?php echo LIBRARIES ?>plugins/input-mask/jquery.inputmask.js"></script>
+<script src="<?php echo LIBRARIES ?>plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="<?php echo LIBRARIES ?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<!-- jqueryNumberFormater -->
+<script src="<?php echo LIBRARIES ?>jqueryNumber/jqueryNumber.js"></script>
+<!-- daterangerpicker -->
+<script src="<?php echo LIBRARIES ?>bower_components/moment/min/moment.min.js"></script>
+<script src="<?php echo LIBRARIES ?>bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- morris -->
+<script src="<?php echo LIBRARIES ?>bower_components/raphael/raphael.min.js"></script>
+<script src="<?php echo LIBRARIES ?>bower_components/morris.js/morris.min.js"></script>
 <!--==========================
   =            SCRIPT MODULES           =
   ===========================-->
-
 <!--==========================
   =            BODY            =
   ===========================-->

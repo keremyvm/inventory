@@ -14,9 +14,12 @@
 <!-- <script src="<?php //echo JS?>usuarios.js"></script> -->
 <!-- <script src="<?php //echo JS?>categorias.js"></script> -->
 <!-- <script src="<?php //echo JS?>usuario.js"></script> -->
-<!-- <script src="<?php //echo JS?>main.js"></script> -->
+<script src="<?php echo JS?>main.js"></script>
 <!--============================
 	=            END SCRIPT            =
 	=============================-->
 </body>
 </html>
+<!--=====================================
+=            Section comment            =
+======================================-->
